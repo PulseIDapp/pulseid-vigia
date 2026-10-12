@@ -1,0 +1,57 @@
+name: Vigía del registro de PulseID
+
+# Cada hora comprueba, sin confiar en PulseID, que el registro de transparencia
+# de https://pulseids.com solo crece. Repositorio público: Actions es gratis y
+# el historial de comprobaciones (git log de estado/) lo puede leer cualquiera.
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: vigia
+  cancel-in-progress: false
+
+jobs:
+  vigilar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Vigilar
+        id: vigia
+        run: |
+          set +e
+          node vigia-registro.mjs --estado=estado/vigia-registro.json | tee salida.txt
+          echo "codigo=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+      - name: Guardar la memoria (solo si todo cuadra)
+        if: steps.vigia.outputs.codigo == '0'
+        run: |
+          git config user.name 'vigia-pulseid'
+          git config user.email 'vigia-pulseid@users.noreply.github.com'
+          git add estado/vigia-registro.json
+          git diff --cached --quiet || git commit -m "Comprobación $(date -u +%FT%TZ): en orden"
+          git push
+      - name: Abrir incidencia si hay ALERTA
+        if: steps.vigia.outputs.codigo == '2'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          n="$(gh issue list --state open --label alerta --json number --jq '.[0].number')"
+          if [ -z "$n" ]; then
+            gh label create alerta --color B60205 2>/dev/null || true
+            gh issue create --label alerta --title "ALERTA del registro de PulseID $(date -u +%F)" --body-file salida.txt
+          else
+            gh issue comment "$n" --body-file salida.txt
+          fi
+          exit 1
+      - name: Sin poder comprobar (red o servicio)
+        if: steps.vigia.outputs.codigo == '1'
+        run: echo "::warning::No se pudo comprobar esta hora; no es una alerta."
