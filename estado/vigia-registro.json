@@ -534,6 +534,13 @@
       "fecha": "2026-10-26T20:35:08.191Z",
       "kid": "tlog-2026-10",
       "firma": "IHO9PpX5zHnUXk7QOlhdpNi7-iGl5TvDtZQxZAXk8cg5c3RpWg1K7jjLDsTXb9LnIzUDb2f1Y4LEGp7LbnTMaA"
+    },
+    {
+      "tamano": 87,
+      "raiz": "2cda64cfa6a80b0a0883904b17f85988836160fe1e0d8a5f3ba3c8a2b39bc928",
+      "fecha": "2026-10-26T20:35:08.191Z",
+      "kid": "tlog-2026-10",
+      "firma": "IHO9PpX5zHnUXk7QOlhdpNi7-iGl5TvDtZQxZAXk8cg5c3RpWg1K7jjLDsTXb9LnIzUDb2f1Y4LEGp7LbnTMaA"
     }
   ]
 }
