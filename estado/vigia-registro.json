@@ -3,11 +3,11 @@
     "tlog-2026-10": "a67b4e9fe30a9c59"
   },
   "ultima": {
-    "tamano": 88,
-    "raiz": "2fd866ff08544f7e8ae8ab9bbe0e95bfb4aa080943fb25a6b10ca77e0b7a3ec1",
-    "fecha": "2026-10-27T19:28:10.432Z",
+    "tamano": 89,
+    "raiz": "c1f882af0c3b48ba28f9b8d58b4397ef6ca374cf62f36e171c08beff4a46184b",
+    "fecha": "2026-11-01T19:45:12.603Z",
     "kid": "tlog-2026-10",
-    "firma": "GtgTl2OfSWehKeym26P56r1iHg6JCpZc6jSyI0YU7HS_nOtqWfYr4p41fy84SDptYmKFB6iNdEz3JkxmnpvxmA"
+    "firma": "lWQBZn9QmaI-EFwLmlhbqYn8ObTPEIVLkagwi9Ec6cqgwBk-ncTW8OR_bJ4xg5AU0TeWzbyXes024V0b5CXlXQ"
   },
   "historial": [
     {
@@ -702,6 +702,13 @@
       "fecha": "2026-10-27T19:28:10.432Z",
       "kid": "tlog-2026-10",
       "firma": "GtgTl2OfSWehKeym26P56r1iHg6JCpZc6jSyI0YU7HS_nOtqWfYr4p41fy84SDptYmKFB6iNdEz3JkxmnpvxmA"
+    },
+    {
+      "tamano": 89,
+      "raiz": "c1f882af0c3b48ba28f9b8d58b4397ef6ca374cf62f36e171c08beff4a46184b",
+      "fecha": "2026-11-01T19:45:12.603Z",
+      "kid": "tlog-2026-10",
+      "firma": "lWQBZn9QmaI-EFwLmlhbqYn8ObTPEIVLkagwi9Ec6cqgwBk-ncTW8OR_bJ4xg5AU0TeWzbyXes024V0b5CXlXQ"
     }
   ]
 }
